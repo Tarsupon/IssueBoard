@@ -2,7 +2,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { Component, OnInit } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import { AddTask, DeleteTask, ETaskActions, TaskActions } from '../core/tasks/task.actions';
-import { selectDoneTasks, selectInProgressTasks, selectTodoList, selectTodoTasks } from '../core/tasks/task.selectors';
+import { selectDoneTasks, selectInProgressTasks, selectTodoTasks } from '../core/tasks/task.selectors';
 import { ITaskState } from '../core/tasks/task.state';
 import { ITask } from '../shared/interfaces';
 import { Observable } from 'rxjs/internal/Observable';

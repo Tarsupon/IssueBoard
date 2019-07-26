@@ -1,22 +1,19 @@
-import { createSelector } from '@ngrx/store';
-import { ITask } from '../../shared/interfaces';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ITaskState } from './task.state';
 
-export const selectTodoList = (state: ITaskState) => state.todoList;
-export const selectInProgressList = (state: ITaskState) => state.inProgressList;
-export const selectDoneList = (state: ITaskState) => state.doneList;
+export const getState = createFeatureSelector<ITaskState>('task');
 
 export const selectTodoTasks = createSelector(
-  selectTodoList,
-  (state: ITask[]) => state
+  getState,
+  (state: ITaskState) => state.todoList
 );
 
 export const selectInProgressTasks = createSelector(
-  selectInProgressList,
-  (state: ITask[]) => state
+  getState,
+  (state: ITaskState) => state.inProgressList
 );
 
 export const selectDoneTasks = createSelector(
-  selectDoneList,
-  (state: ITask[]) => state
+  getState,
+  (state: ITaskState) => state.doneList
 );

@@ -5,6 +5,7 @@ export enum ETaskActions {
   AddTask = '[Task] Add ',
   DeleteTask = '[Task] Delete ',
   EditTask = '[Task] Edit ',
+  MoveTask = '[Task] Move',
 }
 
 export class AddTask implements Action {
@@ -34,4 +35,13 @@ export class EditTask implements Action {
   }
 }
 
-export type TaskActions = AddTask | DeleteTask | EditTask;
+export class MoveTask implements  Action {
+  public readonly type = ETaskActions.MoveTask;
+  payload: ITask;
+
+  constructor(payload: ITask) {
+    this.payload = payload;
+  }
+}
+
+export type TaskActions = AddTask | DeleteTask | EditTask | MoveTask;

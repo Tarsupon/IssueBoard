@@ -1,5 +1,5 @@
 import { ITask } from '../../shared/interfaces';
-import { AddTask, ETaskActions, TaskActions } from './task.actions';
+import { ETaskActions, TaskActions } from './task.actions';
 import { initialTaskState, ITaskState } from './task.state';
 
 export const taskReducers = (
@@ -34,6 +34,7 @@ export const taskReducers = (
         doneList: [...state.doneList].filter(el => el.id !== action.payload.id)
       };
     }
+
     case ETaskActions.EditTask: {
       if (action.payload.isTodo) {
         let editableElementIndex = state.todoList.findIndex(el => el.id === action.payload.id);
@@ -52,6 +53,9 @@ export const taskReducers = (
           inProgressList: [...state.inProgressList.slice(0, editableElementIndex), updatedElement, ...state.inProgressList.slice(editableElementIndex + 1)]
         }
       }
+    }
+    default: {
+      return state;
     }
   }
 };
