@@ -1,0 +1,58 @@
+<mat-card class="container">
+  <div class="container__newTask">
+    <mat-form-field>
+      <input matInput type="text" placeholder="type..." class="newTask__input" #newTaskInput>
+      <button mat-flat-button matSuffix class="newTask__button" (click)="createTask(newTaskInput.value)">OK</button>
+    </mat-form-field>
+  </div>
+  <div class="container__boards">
+    <div class="example-container">
+      <h2>To do</h2>
+      <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todoTasks$ | async"
+        [cdkDropListConnectedTo]="[inProgressList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="task" *ngFor="let item of todoTasks$ | async" cdkDrag>
+          <input matInput  [value]="item.header">
+          <button matSuffix mat-icon-button (click)="deleteTask(item)"><mat-icon>clear</mat-icon></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>In progress</h2>
+      <div
+        cdkDropList
+        #inProgressList="cdkDropList"
+        [cdkDropListData]="inProgressTasks$ | async"
+        [cdkDropListConnectedTo]="[todoList,doneList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="task" *ngFor="let item of inProgressTasks$ | async" cdkDrag>
+          <input matInput  [value]="item.header">
+          <button matSuffix mat-icon-button (click)="deleteTask(item)"><mat-icon>clear</mat-icon></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Done</h2>
+      <div
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="doneTasks$ | async"
+        [cdkDropListConnectedTo]="[inProgressList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="task" *ngFor="let item of doneTasks$ | async" cdkDrag>
+          <input matInput  [value]="item.header" readonly>
+          <button matSuffix mat-icon-button (click)="deleteTask(item)"><mat-icon>clear</mat-icon></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</mat-card>
