@@ -17,7 +17,7 @@
         (cdkDropListDropped)="drop($event)">
         <div class="task" *ngFor="let item of todoTasks$ | async" cdkDrag>
           <input matInput  [value]="item.header">
-          <button matSuffix mat-icon-button (click)="deleteTask(item)"><mat-icon>clear</mat-icon></button>
+          <button matSuffix mat-icon-button (click)="deleteTask(item.id, 'Todo')"><mat-icon>clear</mat-icon></button>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
         (cdkDropListDropped)="drop($event)">
         <div class="task" *ngFor="let item of inProgressTasks$ | async" cdkDrag>
           <input matInput  [value]="item.header">
-          <button matSuffix mat-icon-button (click)="deleteTask(item)"><mat-icon>clear</mat-icon></button>
+          <button matSuffix mat-icon-button (click)="deleteTask(item.id, 'InProgress')"><mat-icon>clear</mat-icon></button>
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@
         (cdkDropListDropped)="drop($event)">
         <div class="task" *ngFor="let item of doneTasks$ | async" cdkDrag>
           <input matInput  [value]="item.header" readonly>
-          <button matSuffix mat-icon-button (click)="deleteTask(item)"><mat-icon>clear</mat-icon></button>
+          <button matSuffix mat-icon-button (click)="deleteTask(item.id, 'Done')"><mat-icon>clear</mat-icon></button>
         </div>
       </div>
     </div>

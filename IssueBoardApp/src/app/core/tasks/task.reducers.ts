@@ -1,56 +1,48 @@
 import { ITask } from '../../shared/interfaces';
 import { ETaskActions, TaskActions } from './task.actions';
-import { initialTaskState, ITaskState } from './task.state';
+import { initialTaskState, IAppState } from './task.state';
 
 export const taskReducers = (
   state = initialTaskState,
     action: TaskActions
-): ITaskState => {
+): IAppState => {
   switch (action.type) {
+    case ETaskActions.MoveTask:
+      break;
     case ETaskActions.AddTask: {
       let newItem: ITask = {
-        id: state.todoList.length + 1,
+        id: state.boards['Todo'].length + 1,
         header: `${action.payload}`,
-        isDone: false,
-        isInProgress: false,
-        isTodo: true,
       };
       return {
         ...state,
-        todoList: [...state.todoList, newItem],
+         boards: {
+          ...state.boards,
+          'Todo': [...state.boards['Todo'], newItem]
+        }
       };
     }
     case ETaskActions.DeleteTask: {
-      if (action.payload.isTodo) return {
+      const {boardType, taskId} = action.payload;
+      return {
         ...state,
-        todoList: state.todoList.filter(el => el.id !== action.payload.id)
-      };
-      if (action.payload.isInProgress) return {
-        ...state,
-        inProgressList: state.inProgressList.filter(el => el.id !== action.payload.id)
-      };
-      if (action.payload.isDone) return {
-        ...state,
-        doneList: [...state.doneList].filter(el => el.id !== action.payload.id)
+        boards: {
+          ...state.boards,
+          [boardType]: state.boards[boardType].filter(el => el.id !== taskId)
+        }
       };
     }
 
     case ETaskActions.EditTask: {
-      if (action.payload.isTodo) {
-        let editableElementIndex = state.todoList.findIndex(el => el.id === action.payload.id);
-        const updatedElement: ITask = state.todoList[editableElementIndex] = action.payload;
-        return {
-          ...state,
-          todoList: [...state.todoList.slice(0, editableElementIndex), updatedElement, ...state.todoList.slice(editableElementIndex + 1)]
-        }
-      }
 
-      if (action.payload.isInProgress) {
-        let editableElementIndex = state.inProgressList.findIndex(el => el.id === action.payload.id);
-        const updatedElement: ITask = state.inProgressList[editableElementIndex] = action.payload;
-        return {
-          ...state,
-          inProgressList: [...state.inProgressList.slice(0, editableElementIndex), updatedElement, ...state.inProgressList.slice(editableElementIndex + 1)]
+      let editableElementIndex = state.boards[action.payload.boardType].findIndex(el => el.id === action.payload.item.id);
+      let editableElement: ITask = state.boards[action.payload.boardType].find(el => el.id === action.payload.item.id);
+      editableElement.header = action.payload.item.header;
+      return {
+        ...state,
+        boards: {
+          ...state.boards,
+          [action.payload.boardType]: [...state.boards[action.payload.boardType].slice(0, editableElementIndex), editableElement, ...state.boards[action.payload.boardType].slice(editableElementIndex + 1)]
         }
       }
     }

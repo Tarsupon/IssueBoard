@@ -1,9 +1,9 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { Action, Store } from '@ngrx/store';
+import { Action, props, select, Store } from '@ngrx/store';
 import { AddTask, DeleteTask, ETaskActions, TaskActions } from '../core/tasks/task.actions';
-import { selectDoneTasks, selectInProgressTasks, selectTodoTasks } from '../core/tasks/task.selectors';
-import { ITaskState } from '../core/tasks/task.state';
+import { getState, selectTasks } from '../core/tasks/task.selectors';
+import { IAppState } from '../core/tasks/task.state';
 import { ITask } from '../shared/interfaces';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -18,15 +18,15 @@ export class MainboardComponent implements OnInit {
   inProgressTasks$: Observable<ITask[]>;
   doneTasks$: Observable<ITask[]>;
 
-  constructor(private store: Store<ITaskState>) {
+  constructor(private store: Store<IAppState>) {
   }
 
   createTask(newTaskInput: string) {
    this.store.dispatch(new AddTask(newTaskInput));
   }
 
-  deleteTask(item: ITask) {
-    this.store.dispatch(new DeleteTask(item));
+  deleteTask(taskId: number, boardType: string) {
+    this.store.dispatch(new DeleteTask({boardType, taskId}));
   }
 
   drop(event: CdkDragDrop<ITask[]>) {
@@ -41,8 +41,14 @@ export class MainboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.todoTasks$ = this.store.select(selectTodoTasks);
-    this.inProgressTasks$ = this.store.select(selectInProgressTasks);
-    this.doneTasks$ = this.store.select(selectDoneTasks);
+    this.todoTasks$ = this.store.pipe(
+      select(selectTasks,{boardType: 'Todo'})
+    );
+    this.inProgressTasks$ = this.store.pipe(
+      select(selectTasks,{boardType: 'InProgress'})
+    );
+    this.doneTasks$ = this.store.pipe(
+      select(selectTasks, {boardType: 'Done'})
+    );
   }
 }
