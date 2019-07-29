@@ -5,7 +5,8 @@
       <button mat-flat-button matSuffix class="newTask__button" (click)="createTask(newTaskInput.value)">OK</button>
     </mat-form-field>
   </div>
-  <div class="container__boards">
+  <div cdkDropListGroup class="container__boards">
+
     <div class="example-container">
       <h2>To do</h2>
       <div

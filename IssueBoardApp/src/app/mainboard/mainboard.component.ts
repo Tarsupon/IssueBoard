@@ -12,7 +12,7 @@ import {
   LoadItems,
   TaskActions,
 } from '../core/tasks/task.actions';
-import { getState, selectTasks } from '../core/tasks/task.selectors';
+import { getState, selectAllTasks, selectTasks } from '../core/tasks/task.selectors';
 import { IAppState } from '../core/tasks/task.state';
 import { ITask } from '../shared/interfaces';
 import { Observable } from 'rxjs/internal/Observable';
@@ -28,7 +28,7 @@ export class MainboardComponent implements OnInit {
   inProgressTasks$: Observable<ITask[]>;
   doneTasks$: Observable<ITask[]>;
 
-  constructor(private store: Store<IAppState>, private getDataService: GetFakeDataService) {
+  constructor(private store: Store<IAppState>) {
   }
 
   createTask(newTaskInput: string) {

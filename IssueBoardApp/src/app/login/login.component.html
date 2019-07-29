@@ -1,0 +1,37 @@
+<div class="container">
+  <mat-card class="container__card">
+    <mat-card-title class="card__login">Login</mat-card-title>
+    <form class="card__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form__username">
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 class="username__input"
+                 formControlName="userName"
+                 placeholder="Username"
+          />
+        </mat-form-field>
+        <div *ngIf="submitted && f.username.errors">
+          <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+      </div>
+      <div class="form__password">
+        <mat-form-field>
+          <input matInput
+                 type="password"
+                 class="password__input"
+                 formControlName="password"
+                 placeholder="Password"
+          />
+        </mat-form-field>
+        <div *ngIf="submitted && f.username.errors">
+          <div *ngIf="f.password.errors.required">Username is required</div>
+        </div>
+      </div>
+      <div class="form__buttons">
+        <button mat-raised-button [disabled]="loading" class="buttons__loginButton">Login</button>
+        <a mat-raised-button [routerLink]="['/register']" class="buttons__registerButton">Register</a>
+      </div>
+    </form>
+  </mat-card>
+</div>

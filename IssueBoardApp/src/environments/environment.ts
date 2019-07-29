@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   GET_FROM_FAKE_SERVER: 'http://localhost:3000/response',
+  GET_USERS_FROM_FAKE_SERVER: 'http://localhost:3000/users'
 };
 
 /*

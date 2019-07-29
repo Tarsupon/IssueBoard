@@ -3,8 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'kanban',
     loadChildren: () => import('./mainboard/mainboard.module').then(m => m.MainboardModule),
+  },
+  {
+    path: '',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
   }
 ];
 
