@@ -56,6 +56,10 @@
           cursor: move;
           background: white;
           font-size: 14px;
+
+          .task__input {
+            cursor: move;
+          }
         }
       }
     }

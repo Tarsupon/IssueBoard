@@ -1,5 +1,7 @@
 import { Action } from '@ngrx/store';
 import { ITask } from '../../shared/interfaces';
+import { IDeleteTaskType } from '../../shared/interfaces/IDeleteTaskType';
+import { IEditTaskType } from '../../shared/interfaces/IEditTaskType';
 
 export enum ETaskActions {
   AddTask = '[Task] Add ',
@@ -7,7 +9,6 @@ export enum ETaskActions {
   EditTask = '[Task] Edit ',
   MoveTask = '[Task] Move',
 }
-//TODO: create types everywhere
 export class AddTask implements Action {
   public readonly type = ETaskActions.AddTask;
   payload: string;
@@ -19,12 +20,9 @@ export class AddTask implements Action {
 
 export class DeleteTask implements Action {
   public readonly type = ETaskActions.DeleteTask;
-  payload: {
-    boardType: string;
-    taskId: number;
-  };
+  payload: IDeleteTaskType;
 
-  constructor(payload:  { boardType: string, taskId: number }) {
+  constructor(payload:  IDeleteTaskType) {
     this.payload = payload
 
   }
@@ -32,14 +30,10 @@ export class DeleteTask implements Action {
 
 export class EditTask implements Action {
   public readonly type = ETaskActions.EditTask;
-  payload: {
-    boardType: string;
-    item: ITask;
-  };
+  payload: IEditTaskType;
 
-  constructor(payload) {
-    this.payload.boardType = payload.boardType;
-    this.payload.item = payload.item;
+  constructor(payload: IEditTaskType) {
+    this.payload = payload;
   }
 }
 

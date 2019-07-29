@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Action, props, select, Store } from '@ngrx/store';
-import { AddTask, DeleteTask, ETaskActions, TaskActions } from '../core/tasks/task.actions';
+import { AddTask, DeleteTask, EditTask, ETaskActions, TaskActions } from '../core/tasks/task.actions';
 import { getState, selectTasks } from '../core/tasks/task.selectors';
 import { IAppState } from '../core/tasks/task.state';
 import { ITask } from '../shared/interfaces';
@@ -27,6 +27,10 @@ export class MainboardComponent implements OnInit {
 
   deleteTask(taskId: number, boardType: string) {
     this.store.dispatch(new DeleteTask({boardType, taskId}));
+  }
+
+  saveEditableTask(boardType: string, item: ITask, newHeader: string) {
+    this.store.dispatch(new EditTask({boardType, item, newHeader}))
   }
 
   drop(event: CdkDragDrop<ITask[]>) {

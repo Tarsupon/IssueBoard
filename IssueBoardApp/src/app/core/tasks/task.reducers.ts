@@ -35,14 +35,16 @@ export const taskReducers = (
 
     case ETaskActions.EditTask: {
 
-      let editableElementIndex = state.boards[action.payload.boardType].findIndex(el => el.id === action.payload.item.id);
-      let editableElement: ITask = state.boards[action.payload.boardType].find(el => el.id === action.payload.item.id);
-      editableElement.header = action.payload.item.header;
+      const {boardType, item, newHeader} = action.payload;
+
+      let editableElementIndex = state.boards[boardType].findIndex(el => el.id === item.id);
+      let editableElement: ITask = state.boards[boardType].find(el => el.id === item.id);
+      editableElement.header = newHeader;
       return {
         ...state,
         boards: {
           ...state.boards,
-          [action.payload.boardType]: [...state.boards[action.payload.boardType].slice(0, editableElementIndex), editableElement, ...state.boards[action.payload.boardType].slice(editableElementIndex + 1)]
+          [boardType]: [...state.boards[boardType].slice(0, editableElementIndex), editableElement, ...state.boards[boardType].slice(editableElementIndex + 1)]
         }
       }
     }
