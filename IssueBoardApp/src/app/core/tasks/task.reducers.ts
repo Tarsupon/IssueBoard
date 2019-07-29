@@ -7,8 +7,7 @@ export const taskReducers = (
     action: TaskActions
 ): IAppState => {
   switch (action.type) {
-    case ETaskActions.MoveTask:
-      break;
+
     case ETaskActions.AddTask: {
       let newItem: ITask = {
         id: state.boards['Todo'].length + 1,
@@ -46,6 +45,12 @@ export const taskReducers = (
           ...state.boards,
           [boardType]: [...state.boards[boardType].slice(0, editableElementIndex), editableElement, ...state.boards[boardType].slice(editableElementIndex + 1)]
         }
+      }
+    }
+    case ETaskActions.LoadItems: {
+      return {
+        ...state,
+        boards: action.payload.boards
       }
     }
     default: {

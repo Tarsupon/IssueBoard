@@ -6,26 +6,5 @@ export interface IAppState {
   }
 }
 
-export const initialTaskState: IAppState = {
-  boards: {
-    'Todo': [
-      {
-        id: 1,
-        header: 'TODO'
-      },
-    ],
-    'InProgress': [
-      {
-        id: 1,
-        header: 'InPROGREEs'
-      }
-    ],
-    'Done': [
-      {
-        id: 1,
-        header: 'DONe!!!'
-      }
-    ]
-  }
-};
+export const initialTaskState: IAppState = { boards: {} };
 

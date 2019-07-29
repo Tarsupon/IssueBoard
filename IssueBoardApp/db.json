@@ -1,0 +1,24 @@
+{
+  "response": {
+    "boards": {
+      "Todo": [
+        {
+          "id": 1,
+          "header": "TODO"
+        }
+      ],
+      "InProgress": [
+        {
+          "id": 1,
+          "header": "InPROGREEs"
+        }
+      ],
+      "Done": [
+        {
+          "id": 1,
+          "header": "DONe!!!"
+        }
+      ]
+    }
+  }
+}

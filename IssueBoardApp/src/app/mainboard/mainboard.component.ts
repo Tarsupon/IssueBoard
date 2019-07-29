@@ -1,7 +1,17 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Action, props, select, Store } from '@ngrx/store';
-import { AddTask, DeleteTask, EditTask, ETaskActions, TaskActions } from '../core/tasks/task.actions';
+import { filter } from 'rxjs/operators';
+import { GetFakeDataService } from '../core/get-fake-data.service';
+import {
+  AddTask,
+  DeleteTask,
+  EditTask,
+  ETaskActions,
+  StartGetItems,
+  LoadItems,
+  TaskActions,
+} from '../core/tasks/task.actions';
 import { getState, selectTasks } from '../core/tasks/task.selectors';
 import { IAppState } from '../core/tasks/task.state';
 import { ITask } from '../shared/interfaces';
@@ -18,7 +28,7 @@ export class MainboardComponent implements OnInit {
   inProgressTasks$: Observable<ITask[]>;
   doneTasks$: Observable<ITask[]>;
 
-  constructor(private store: Store<IAppState>) {
+  constructor(private store: Store<IAppState>, private getDataService: GetFakeDataService) {
   }
 
   createTask(newTaskInput: string) {
@@ -45,6 +55,10 @@ export class MainboardComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.store.dispatch(new StartGetItems());
+
+
     this.todoTasks$ = this.store.pipe(
       select(selectTasks,{boardType: 'Todo'})
     );
@@ -54,5 +68,6 @@ export class MainboardComponent implements OnInit {
     this.doneTasks$ = this.store.pipe(
       select(selectTasks, {boardType: 'Done'})
     );
+
   }
 }

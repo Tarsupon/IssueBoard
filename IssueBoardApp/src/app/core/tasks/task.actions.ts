@@ -2,12 +2,14 @@ import { Action } from '@ngrx/store';
 import { ITask } from '../../shared/interfaces';
 import { IDeleteTaskType } from '../../shared/interfaces/IDeleteTaskType';
 import { IEditTaskType } from '../../shared/interfaces/IEditTaskType';
+import { IAppState } from './task.state';
 
 export enum ETaskActions {
   AddTask = '[Task] Add ',
   DeleteTask = '[Task] Delete ',
   EditTask = '[Task] Edit ',
-  MoveTask = '[Task] Move',
+  LoadItems = '[Task] Load ',
+  StartGetItems = '[Task] Get'
 }
 export class AddTask implements Action {
   public readonly type = ETaskActions.AddTask;
@@ -37,13 +39,16 @@ export class EditTask implements Action {
   }
 }
 
-export class MoveTask implements  Action {
-  public readonly type = ETaskActions.MoveTask;
-  payload: ITask;
+export class StartGetItems implements Action {
+  readonly  type = ETaskActions.StartGetItems
+}
 
-  constructor(payload: ITask) {
+export class LoadItems implements Action {
+  public readonly type = ETaskActions.LoadItems;
+  payload: IAppState;
+  constructor(payload: IAppState) {
     this.payload = payload;
   }
 }
 
-export type TaskActions = AddTask | DeleteTask | EditTask | MoveTask;
+export type TaskActions = AddTask | DeleteTask | EditTask | LoadItems | StartGetItems;
