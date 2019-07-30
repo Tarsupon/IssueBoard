@@ -1,9 +1,14 @@
 {
- "users": [
-   {
-     "id": 0,
-     "username": "test",
-     "password": "test"
-   }
- ]
+  "users": [
+    {
+      "token": 0,
+      "username": "test",
+      "password": "test"
+    },
+    {
+      "token": 1,
+      "username": "alex",
+      "password": "alex"
+    }
+  ]
 }

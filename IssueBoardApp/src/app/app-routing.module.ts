@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './core';
 
 const routes: Routes = [
   {
     path: 'kanban',
     loadChildren: () => import('./mainboard/mainboard.module').then(m => m.MainboardModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '',

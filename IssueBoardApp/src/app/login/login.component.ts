@@ -1,29 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
 
-  loginForm = new FormGroup({
-    userName: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-  });
+  userName = '';
+  password = '';
 
-  get f() { return this.loginForm.controls; }
+  constructor(private router: Router) { }
 
-  loading = false;
-  submitted = false;
+  tryLogin() {
+      localStorage.setItem('username', this.userName);
+      localStorage.setItem('password', this.password);
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  onSubmit() {
-
+      this.router.navigateByUrl('kanban');
   }
 }

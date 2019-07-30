@@ -9,6 +9,6 @@ export class GetFakeUsers {
   constructor(private http: HttpClient) {}
 
   getUsers() {
-    this.http.get(environment.GET_USERS_FROM_FAKE_SERVER);
+    return this.http.get(environment.GET_USERS_FROM_FAKE_SERVER);
   }
 }
