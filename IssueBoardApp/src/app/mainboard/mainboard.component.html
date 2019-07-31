@@ -2,7 +2,7 @@
   <div class="container__newTask">
     <h3>You are entered as {{authUser}}</h3>
     <mat-form-field>
-      <input matInput type="text" placeholder="type..." class="newTask__input" #newTaskInput>
+      <input matInput type="text" placeholder="type..." class="newTask__input" (keyup.enter)="tasksFacade.createTask(newTaskInput.value)" #newTaskInput>
       <button mat-flat-button matSuffix class="newTask__button" (click)="tasksFacade.createTask(newTaskInput.value)">OK</button>
     </mat-form-field>
   </div>
@@ -14,7 +14,7 @@
         cdkDropList
         #todoList="cdkDropList"
         [cdkDropListData]="todoTasks$ | async"
-        [cdkDropListConnectedTo]="[inProgressList]"
+        [cdkDropListConnectedTo]="[inProgressList, doneList]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
         <div class="task" *ngFor="let item of todoTasks$ | async" cdkDrag>
@@ -46,7 +46,7 @@
         cdkDropList
         #doneList="cdkDropList"
         [cdkDropListData]="doneTasks$ | async"
-        [cdkDropListConnectedTo]="[inProgressList]"
+        [cdkDropListConnectedTo]="[todoList, inProgressList]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
         <div class="task" *ngFor="let item of doneTasks$ | async" cdkDrag>

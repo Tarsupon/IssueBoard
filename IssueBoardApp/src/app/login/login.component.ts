@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,15 +9,22 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent{
 
-  userName = '';
-  password = '';
+  userName = new FormControl('');
+  password = new FormControl('');
 
   constructor(private router: Router) { }
 
   tryLogin() {
-      localStorage.setItem('username', this.userName);
-      localStorage.setItem('password', this.password);
-
+      this.setName();
+      this.setPassword();
       this.router.navigateByUrl('kanban');
+  }
+
+  setName() {
+    localStorage.setItem('username', this.userName.value);
+  }
+
+  setPassword() {
+    localStorage.setItem('password', this.password.value);
   }
 }

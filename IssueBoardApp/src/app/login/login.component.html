@@ -1,13 +1,14 @@
 <div class="container">
   <mat-card class="container__card">
     <mat-card-title class="card__login">Login</mat-card-title>
-    <div class="card__form" >
+    <form class="card__form" >
       <div class="form__username">
         <mat-form-field>
           <input matInput
                  type="text"
                  class="username__input"
-                 [(ngModel)]="userName"
+                 [formControl]="userName"
+                 (change)="setName()"
                  placeholder="Username"
           />
         </mat-form-field>
@@ -18,7 +19,8 @@
           <input matInput
                  type="password"
                  class="password__input"
-                 [(ngModel)]="password"
+                 [formControl]="password"
+                 (change)="setPassword()"
                  placeholder="Password"
           />
         </mat-form-field>
@@ -27,6 +29,6 @@
       <div class="form__buttons">
         <button mat-raised-button (click)="tryLogin()" class="buttons__loginButton">Login</button>
       </div>
-    </div>
+    </form>
   </mat-card>
 </div>

@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TasksFacade } from '../core/tasks';
 import { ITask } from '../shared/interfaces';
 import { Observable } from 'rxjs/internal/Observable';
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/internal/Observable';
   templateUrl: './mainboard.component.html',
   styleUrls: ['./mainboard.component.scss'],
 })
-export class MainboardComponent {
+export class MainboardComponent implements OnInit{
 
   todoTasks$: Observable<ITask[]>;
   inProgressTasks$: Observable<ITask[]>;
@@ -18,10 +18,7 @@ export class MainboardComponent {
   authUser = localStorage.getItem('username');
 
   constructor(public tasksFacade: TasksFacade) {
-    this.tasksFacade.getAllTasks();
-    this.todoTasks$ = this.tasksFacade.todoTasks$;
-    this.inProgressTasks$ = this.tasksFacade.inProgressTasks$;
-    this.doneTasks$ = this.tasksFacade.doneTasks$;
+
   }
 
   drop(event: CdkDragDrop<ITask[]>) {
@@ -33,5 +30,13 @@ export class MainboardComponent {
         event.previousIndex,
         event.currentIndex);
     }
+  }
+
+  ngOnInit() {
+    this.tasksFacade.getAllTasks();
+
+    this.todoTasks$ = this.tasksFacade.todoTasks$;
+    this.inProgressTasks$ = this.tasksFacade.inProgressTasks$;
+    this.doneTasks$ = this.tasksFacade.doneTasks$;
   }
 }

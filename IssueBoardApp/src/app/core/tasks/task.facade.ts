@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { ITask } from '../../shared/interfaces';
-import { AddTask, DeleteTask, EditTask, StartGetItems } from './task.actions';
-import { selectTasks } from './task.selectors';
+import { AddTask, DeleteTask, EditTask, LoadItems, StartGetItems } from './task.actions';
+import { selectAllBoards, selectTasks } from './task.selectors';
 import { IAppState } from './task.state';
 
 @Injectable()
 export class TasksFacade{
+
 
   todoTasks$ = this.store.pipe(
     select(selectTasks,{boardType: 'Todo'})
