@@ -5,6 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
 import { CoreModule } from '../core';
+import { boardReducers } from '../core/boards/board.reducers';
 import { TaskEffects } from '../core/tasks';
 import { taskReducers } from '../core/tasks';
 import { TasksFacade } from '../core/tasks/task.facade';
@@ -19,7 +20,7 @@ import { SharedModule } from '../shared';
     SharedModule,
     CoreModule,
     MainboardRoutingModule,
-    StoreModule.forRoot({ task: taskReducers }),
+    StoreModule.forRoot({ task: taskReducers, board: boardReducers }),
     EffectsModule.forRoot([TaskEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],

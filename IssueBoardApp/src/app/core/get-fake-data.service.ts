@@ -12,4 +12,8 @@ export class GetFakeDataService {
   getData() {
     return this.http.get(environment.GET_FROM_FAKE_SERVER);
   }
+
+  sendNewBoard(value: string) {
+    return this.http.post<{[boardType: string]:[]}>(environment.GET_FROM_FAKE_SERVER + '/boards', JSON.stringify({[value]:[]}));
+  }
 }

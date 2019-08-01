@@ -36,14 +36,22 @@ export const taskReducers = (
 
       const {boardType, item, newHeader} = action.payload;
 
-      let editableElementIndex = state.boards[boardType].findIndex(el => el.id === item.id);
-      let editableElement: ITask = state.boards[boardType].find(el => el.id === item.id);
-      editableElement.header = newHeader;
-      return {
-        ...state,
-        boards: {
-          ...state.boards,
-          [boardType]: [...state.boards[boardType].slice(0, editableElementIndex), editableElement, ...state.boards[boardType].slice(editableElementIndex + 1)]
+      if (boardType === 'Done') {
+        return {
+          ...state,
+          boards: state.boards
+        }
+      } else {
+        let editableElementIndex = state.boards[boardType].findIndex(el => el.id === item.id);
+        let editableElement: ITask = state.boards[boardType].find(el => el.id === item.id);
+
+        editableElement.header = newHeader;
+
+        return {
+          ...state,
+          boards: {
+            [boardType]: [...state.boards[boardType].slice(0, editableElementIndex), editableElement, ...state.boards[boardType].slice(editableElementIndex + 1)]
+          }
         }
       }
     }

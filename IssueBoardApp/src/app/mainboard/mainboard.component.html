@@ -1,60 +1,58 @@
 <mat-card class="container">
   <div class="container__newTask">
+    <mat-form-field>
+      <input matInput #newBoard (keyup.enter)="createBoard(newBoard.value)" placeholder="add new board">
+    </mat-form-field>
     <h3>You are entered as {{authUser}}</h3>
     <mat-form-field>
-      <input matInput type="text" placeholder="type..." class="newTask__input" (keyup.enter)="tasksFacade.createTask(newTaskInput.value)" #newTaskInput>
+      <input matInput type="text" placeholder="add new task" class="newTask__input" (keyup.enter)="tasksFacade.createTask(newTaskInput.value)" #newTaskInput>
       <button mat-flat-button matSuffix class="newTask__button" (click)="tasksFacade.createTask(newTaskInput.value)">OK</button>
     </mat-form-field>
   </div>
   <div cdkDropListGroup class="container__boards">
 
-    <div class="example-container">
-      <h2>To do</h2>
+    <div *ngFor="let board of tasks | keyvalue"  class="example-container">
+      <h2>{{board.key}}</h2>
+      <button mat-icon-button (click)="deleteBoard(board.key)"><mat-icon>clear</mat-icon></button>
       <div
         cdkDropList
-        #todoList="cdkDropList"
-        [cdkDropListData]="todoTasks$ | async"
-        [cdkDropListConnectedTo]="[inProgressList, doneList]"
+        [cdkDropListData]="tasks[board.key]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="task" *ngFor="let item of todoTasks$ | async" cdkDrag>
-          <input matInput class="task__input" #newTaskHeader [value]="item.header" (keyup.enter)="tasksFacade.saveEditableTask('Todo', item, newTaskHeader.value)">
-          <button matSuffix mat-icon-button (click)="tasksFacade.deleteTask(item.id, 'Todo')"><mat-icon>clear</mat-icon></button>
+        <div class="task" *ngFor="let item of tasks[board.key] " cdkDrag cdkDragHandle>
+          <input matInput class="task__input" #newTaskHeader [value]="item.header" (keyup.enter)="tasksFacade.saveEditableTask(board.key, item, newTaskHeader.value)">
+          <button matSuffix mat-icon-button (click)="tasksFacade.deleteTask(item.id, board.key)"><mat-icon>clear</mat-icon></button>
         </div>
       </div>
     </div>
 
-    <div class="example-container">
-      <h2>In progress</h2>
-      <div
-        cdkDropList
-        #inProgressList="cdkDropList"
-        [cdkDropListData]="inProgressTasks$ | async"
-        [cdkDropListConnectedTo]="[todoList,doneList]"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="task" *ngFor="let item of inProgressTasks$ | async" cdkDrag>
-          <input matInput class="task__input" #newTaskHeader [value]="item.header" (keyup.enter)="tasksFacade.saveEditableTask('InProgress', item, newTaskHeader.value)">
-          <button matSuffix mat-icon-button (click)="tasksFacade.deleteTask(item.id, 'InProgress')"><mat-icon>clear</mat-icon></button>
-        </div>
-      </div>
-    </div>
+<!--    <div class="example-container">-->
+<!--      <h2>In progress</h2>-->
+<!--      <div-->
+<!--        cdkDropList-->
+<!--        [cdkDropListData]="tasks['InProgress']"-->
+<!--        class="example-list"-->
+<!--        (cdkDropListDropped)="drop($event)">-->
+<!--        <div class="task" *ngFor="let item of tasks['InProgress']" cdkDrag>-->
+<!--          <input matInput class="task__input" #newTaskHeader [value]="item.header" (keyup.enter)="tasksFacade.saveEditableTask('InProgress', item, newTaskHeader.value)">-->
+<!--          <button matSuffix mat-icon-button (click)="tasksFacade.deleteTask(item.id, 'InProgress')"><mat-icon>clear</mat-icon></button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 
-    <div class="example-container">
-      <h2>Done</h2>
-      <div
-        cdkDropList
-        #doneList="cdkDropList"
-        [cdkDropListData]="doneTasks$ | async"
-        [cdkDropListConnectedTo]="[todoList, inProgressList]"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="task" *ngFor="let item of doneTasks$ | async" cdkDrag>
-          <input matInput class="task__input" [value]="item.header" readonly>
-          <button matSuffix mat-icon-button (click)="tasksFacade.deleteTask(item.id, 'Done')"><mat-icon>clear</mat-icon></button>
-        </div>
-      </div>
-    </div>
+<!--    <div class="example-container">-->
+<!--      <h2>Done</h2>-->
+<!--      <div-->
+<!--        cdkDropList-->
+<!--        [cdkDropListData]="tasks['Done']"-->
+<!--        class="example-list"-->
+<!--        (cdkDropListDropped)="drop($event)">-->
+<!--        <div class="task" *ngFor="let item of tasks['Done']" cdkDrag>-->
+<!--          <input matInput class="task__input" [value]="item.header" readonly>-->
+<!--          <button matSuffix mat-icon-button (click)="tasksFacade.deleteTask(item.id, 'Done')"><mat-icon>clear</mat-icon></button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 
   </div>
 </mat-card>
