@@ -1,12 +1,16 @@
 <mat-card class="container">
   <div class="container__newTask">
     <mat-form-field>
-      <input matInput #newBoard (keyup.enter)="createBoard(newBoard.value)" placeholder="add new board">
+      <input matInput #newBoard (keyup.enter)="createBoard(newBoard.value)" [placeholder]="'app.mainboard.addNewBoardPlaceholder' | translate">
     </mat-form-field>
-    <h3>You are entered as {{authUser}}</h3>
+    <h3>{{'app.mainboard.userEnteredAs' | translate}} {{authUser}}</h3>
     <mat-form-field>
-      <input matInput type="text" placeholder="add new task" class="newTask__input" (keyup.enter)="tasksFacade.createTask(newTaskInput.value)" #newTaskInput>
-      <button mat-flat-button matSuffix class="newTask__button" (click)="tasksFacade.createTask(newTaskInput.value)">OK</button>
+      <input matInput
+             type="text"
+             [placeholder]="'app.mainboard.addNewTaskPlaceholder' | translate"
+             class="newTask__input"
+             (keyup.enter)="createTask(newTaskInput.value)" #newTaskInput>
+      <button mat-flat-button matSuffix class="newTask__button" (click)="createTask(newTaskInput.value)">{{'app.mainboard.addTaskButton' | translate}}</button>
     </mat-form-field>
   </div>
   <div cdkDropListGroup class="container__boards">
@@ -19,9 +23,16 @@
         [cdkDropListData]="tasks[board.key]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="task" *ngFor="let item of tasks[board.key] " cdkDrag cdkDragHandle>
-          <input matInput class="task__input" #newTaskHeader [value]="item.header" (keyup.enter)="tasksFacade.saveEditableTask(board.key, item, newTaskHeader.value)">
-          <button matSuffix mat-icon-button (click)="tasksFacade.deleteTask(item.id, board.key)"><mat-icon>clear</mat-icon></button>
+        <div class="task"
+             *ngFor="let item of tasks[board.key]"
+             cdkDrag
+             cdkDragHandle>
+          <input matInput [readonly]="(board.key === 'Done')"
+                 class="task__input"
+                 #newTaskHeader
+                 [value]="item.header"
+                 (keyup.enter)="saveEditableTask(board.key, item, newTaskHeader.value)">
+          <button matSuffix mat-icon-button (click)="deleteTask(item.id, board.key)"><mat-icon>clear</mat-icon></button>
         </div>
       </div>
     </div>

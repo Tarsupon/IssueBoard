@@ -1,0 +1,19 @@
+{
+  "app": {
+    "langButtons": {
+      "en": "ENG",
+      "ru": "RUS"
+    },
+    "loginForm": {
+      "login": "Login",
+      "username": "UserName",
+      "password": "Password"
+    },
+    "mainboard": {
+      "addNewBoardPlaceholder": "add new board",
+      "addNewTaskPlaceholder": "add new task",
+      "userEnteredAs": "You are entered ass",
+      "addTaskButton": "Add"
+    }
+  }
+}

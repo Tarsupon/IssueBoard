@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { IDeleteTaskType } from '../../shared/interfaces';
 import { IEditTaskType } from '../../shared/interfaces';
+import { IAddTaskType } from '../../shared/interfaces/IAddTaskType';
 import { IAppState } from './task.state';
 
 export enum ETaskActions {
@@ -12,9 +13,9 @@ export enum ETaskActions {
 }
 export class AddTask implements Action {
   public readonly type = ETaskActions.AddTask;
-  payload: string;
+  payload: IAddTaskType;
 
-  constructor(payload: string) {
+  constructor(payload: IAddTaskType) {
     this.payload = payload;
   }
 }

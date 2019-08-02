@@ -1,0 +1,19 @@
+{
+  "app": {
+    "langButtons": {
+      "en": "АНГЛ",
+      "ru": "РУС"
+    },
+    "loginForm": {
+      "login": "Войти",
+      "username": "Имя пользователя",
+      "password": "Пароль"
+    },
+    "mainboard": {
+      "addNewBoardPlaceholder": "Добавить доску",
+      "addNewTaskPlaceholder": "Добавить задание",
+      "userEnteredAs": "Вы вошли как",
+      "addTaskButton": "Добавить"
+    }
+  }
+}

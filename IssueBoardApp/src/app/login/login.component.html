@@ -1,6 +1,6 @@
 <div class="container">
   <mat-card class="container__card">
-    <mat-card-title class="card__login">Login</mat-card-title>
+    <mat-card-title class="card__login">{{'app.loginForm.login' | translate}}</mat-card-title>
     <form class="card__form" >
       <div class="form__username">
         <mat-form-field>
@@ -9,7 +9,7 @@
                  class="username__input"
                  [formControl]="userName"
                  (change)="setName()"
-                 placeholder="Username"
+                 [placeholder]="'app.loginForm.username' | translate"
           />
         </mat-form-field>
 
@@ -21,13 +21,13 @@
                  class="password__input"
                  [formControl]="password"
                  (change)="setPassword()"
-                 placeholder="Password"
+                 [placeholder]="'app.loginForm.password' | translate"
           />
         </mat-form-field>
 
       </div>
       <div class="form__buttons">
-        <button mat-raised-button (click)="tryLogin()" class="buttons__loginButton">Login</button>
+        <button mat-raised-button (click)="tryLogin()" class="buttons__loginButton">{{'app.loginForm.login' | translate}}</button>
       </div>
     </form>
   </mat-card>

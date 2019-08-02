@@ -9,6 +9,7 @@ export const boardReducers = (
 
     case EBoardsActions.AddBoard: {
       return {
+        ...state,
         boards: {...action.payload.appState.boards, [action.payload.boardType]:[]}
       };
     }
@@ -16,6 +17,7 @@ export const boardReducers = (
     case EBoardsActions.DeleteBoard: {
       delete action.payload.appState.boards[action.payload.boardType];
       return {
+        ...state,
         boards: {...action.payload.appState.boards }
       }
     }

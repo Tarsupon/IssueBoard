@@ -11,12 +11,12 @@ export const taskReducers = (
     case ETaskActions.AddTask: {
       let newItem: ITask = {
         id: state.boards['Todo'].length + 1,
-        header: `${action.payload}`,
+        header: `${action.payload.header}`,
       };
       return {
         ...state,
          boards: {
-          ...state.boards,
+          ...action.payload.appState.boards,
           'Todo': [...state.boards['Todo'], newItem]
         }
       };
@@ -26,8 +26,8 @@ export const taskReducers = (
       return {
         ...state,
         boards: {
-          ...state.boards,
-          [boardType]: state.boards[boardType].filter(el => el.id !== taskId)
+          ...action.payload.appState.boards,
+          [boardType]: action.payload.appState.boards[boardType].filter(el => el.id !== taskId)
         }
       };
     }
@@ -39,7 +39,7 @@ export const taskReducers = (
       if (boardType === 'Done') {
         return {
           ...state,
-          boards: state.boards
+          boards: action.payload.appState.boards
         }
       } else {
         let editableElementIndex = state.boards[boardType].findIndex(el => el.id === item.id);
@@ -50,7 +50,8 @@ export const taskReducers = (
         return {
           ...state,
           boards: {
-            [boardType]: [...state.boards[boardType].slice(0, editableElementIndex), editableElement, ...state.boards[boardType].slice(editableElementIndex + 1)]
+            ...action.payload.appState.boards,
+            [boardType]: [...action.payload.appState.boards[boardType].slice(0, editableElementIndex), editableElement, ...action.payload.appState.boards[boardType].slice(editableElementIndex + 1)]
           }
         }
       }
