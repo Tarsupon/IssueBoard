@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core';
-import { UserGuardLeave } from './core/user.guard.leave';
+import { UserGuardLeave } from './core';
 
 const routes: Routes = [
   {

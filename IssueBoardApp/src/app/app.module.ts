@@ -9,7 +9,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './core';
-import { UserGuardLeave } from './core/user.guard.leave';
+import { UserGuardLeave } from './core';
 import { LoginModule } from './login';
 import { SharedModule } from './shared';
 

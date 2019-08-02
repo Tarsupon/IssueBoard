@@ -1,15 +1,21 @@
 <mat-card class="container">
   <div class="container__newTask">
     <mat-form-field>
-      <input matInput #newBoard (keyup.enter)="createBoard(newBoard.value)" [placeholder]="'app.mainboard.addNewBoardPlaceholder' | translate">
+      <input matInput
+             #newBoard
+             (keyup.enter)="createBoard(newBoard.value)"
+             (blur)="createBoard(newBoard.value)"
+             [placeholder]="'app.mainboard.addNewBoardPlaceholder' | translate">
     </mat-form-field>
     <h3>{{'app.mainboard.userEnteredAs' | translate}} {{authUser}}</h3>
     <mat-form-field>
       <input matInput
+             #newTaskInput
              type="text"
              [placeholder]="'app.mainboard.addNewTaskPlaceholder' | translate"
              class="newTask__input"
-             (keyup.enter)="createTask(newTaskInput.value)" #newTaskInput>
+             (blur)="createTask(newTaskInput.value)"
+             (keyup.enter)="createTask(newTaskInput.value)">
       <button mat-flat-button matSuffix class="newTask__button" (click)="createTask(newTaskInput.value)">{{'app.mainboard.addTaskButton' | translate}}</button>
     </mat-form-field>
   </div>
@@ -31,6 +37,7 @@
                  class="task__input"
                  #newTaskHeader
                  [value]="item.header"
+                 (blur)="saveEditableTask(board.key, item, newTaskHeader.value)"
                  (keyup.enter)="saveEditableTask(board.key, item, newTaskHeader.value)">
           <button matSuffix mat-icon-button (click)="deleteTask(item.id, board.key)"><mat-icon>clear</mat-icon></button>
         </div>

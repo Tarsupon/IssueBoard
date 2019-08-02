@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { IDeleteTaskType } from '../../shared/interfaces';
 import { IEditTaskType } from '../../shared/interfaces';
-import { IAddTaskType } from '../../shared/interfaces/IAddTaskType';
+import { IAddTaskType } from '../../shared/interfaces';
 import { IAppState } from './task.state';
 
 export enum ETaskActions {

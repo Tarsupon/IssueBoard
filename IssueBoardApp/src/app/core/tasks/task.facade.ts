@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { ITask } from '../../shared/interfaces';
-import { selectAll } from '../boards/board.selectors';
-import { AddTask, DeleteTask, EditTask, LoadItems, StartGetItems } from './task.actions';
+import { selectAll } from '../boards';
+import { StartGetItems } from './task.actions';
 import { selectTasks } from './task.selectors';
 import { IAppState } from './task.state';
 

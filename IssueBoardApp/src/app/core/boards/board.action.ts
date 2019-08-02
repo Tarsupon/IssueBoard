@@ -1,6 +1,5 @@
 import { Action } from '@ngrx/store';
-import { IAddBoardType } from '../../shared/interfaces/IAddBoardType';
-import { AddTask } from '../tasks';
+import { IAddBoardType } from '../../shared/interfaces';
 
 export enum EBoardsActions{
   AddBoard = '[Board] Add ',

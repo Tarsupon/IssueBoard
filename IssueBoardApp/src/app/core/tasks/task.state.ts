@@ -1,4 +1,4 @@
-import { IBoard, ITask } from '../../shared/interfaces';
+import { ITask } from '../../shared/interfaces';
 
 export interface IAppState {
   boards: {

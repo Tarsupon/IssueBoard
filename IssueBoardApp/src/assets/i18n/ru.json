@@ -14,6 +14,7 @@
       "addNewTaskPlaceholder": "Добавить задание",
       "userEnteredAs": "Вы вошли как",
       "addTaskButton": "Добавить"
-    }
+    },
+    "confirmExit": "Вы уверены в этом?"
   }
 }

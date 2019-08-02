@@ -15,10 +15,17 @@ export const boardReducers = (
     }
 
     case EBoardsActions.DeleteBoard: {
-      delete action.payload.appState.boards[action.payload.boardType];
-      return {
-        ...state,
-        boards: {...action.payload.appState.boards }
+      if (action.payload.boardType === 'Todo') {
+        return {
+          ...state,
+          boards: {...action.payload.appState.boards }
+        }
+      } else {
+        delete action.payload.appState.boards[action.payload.boardType];
+        return {
+          ...state,
+          boards: {...action.payload.appState.boards }
+        }
       }
     }
     default: {

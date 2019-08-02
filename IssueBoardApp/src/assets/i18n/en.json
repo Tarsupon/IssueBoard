@@ -14,6 +14,7 @@
       "addNewTaskPlaceholder": "add new task",
       "userEnteredAs": "You are entered ass",
       "addTaskButton": "Add"
-    }
+    },
+    "confirmExit": "Are you sure about this?"
   }
 }

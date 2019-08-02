@@ -1,12 +1,9 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map } from 'rxjs/operators';
-import { GetFakeDataService } from '../core';
-import { AddBoard, DeleteBoard } from '../core/boards/board.action';
-import { AddTask, DeleteTask, EditTask, IAppState, TaskEffects, TasksFacade } from '../core/tasks';
+import { AddBoard, DeleteBoard } from '../core/boards';
+import { AddTask, DeleteTask, EditTask, IAppState, TasksFacade } from '../core/tasks';
 import { ITask } from '../shared/interfaces';
-import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-mainboard',
