@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +7,4 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'IssueBoardApp';
-
-  useLanguage(language: string) {
-    this.translate.use(language);
-  }
-
-  constructor(private translate: TranslateService) {
-    translate.addLangs(['en', 'ru']);
-    this.translate.setDefaultLang('en');
-    this.translate.use('en');
-  }
 }

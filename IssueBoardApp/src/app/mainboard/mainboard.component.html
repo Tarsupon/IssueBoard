@@ -4,7 +4,6 @@
       <input matInput
              #newBoard
              (keyup.enter)="createBoard(newBoard.value)"
-             (blur)="createBoard(newBoard.value)"
              [placeholder]="'app.mainboard.addNewBoardPlaceholder' | translate">
     </mat-form-field>
     <h3>{{'app.mainboard.userEnteredAs' | translate}} {{authUser}}</h3>
@@ -14,7 +13,6 @@
              type="text"
              [placeholder]="'app.mainboard.addNewTaskPlaceholder' | translate"
              class="newTask__input"
-             (blur)="createTask(newTaskInput.value)"
              (keyup.enter)="createTask(newTaskInput.value)">
       <button mat-flat-button matSuffix class="newTask__button" (click)="createTask(newTaskInput.value)">{{'app.mainboard.addTaskButton' | translate}}</button>
     </mat-form-field>
@@ -31,8 +29,7 @@
         (cdkDropListDropped)="drop($event)">
         <div class="task"
              *ngFor="let item of tasks[board.key]"
-             cdkDrag
-             cdkDragHandle>
+             cdkDrag>
           <input matInput [readonly]="(board.key === 'Done')"
                  class="task__input"
                  #newTaskHeader

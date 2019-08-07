@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './core';
 import { UserGuardLeave } from './core';
+import { HeaderModule } from './header';
 import { LoginModule } from './login';
 import { SharedModule } from './shared';
 
@@ -32,11 +33,15 @@ export function httpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       loader: {
         provide: TranslateLoader,
         useFactory: httpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+        deps: [HttpClient],
+      },
+    }),
+    HeaderModule,
   ],
-  providers: [ AuthGuard, UserGuardLeave],
+  providers: [
+    AuthGuard,
+    UserGuardLeave,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { CoreModule } from '../core';
+import { GoogleService } from '../core';
+import { HeaderModule } from '../header';
 import { SharedModule } from '../shared';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
@@ -17,7 +19,10 @@ import { LoginComponent } from './login.component';
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
+    HeaderModule,
   ],
-  providers: []
+  providers: [
+    GoogleService
+  ]
 })
 export class LoginModule { }

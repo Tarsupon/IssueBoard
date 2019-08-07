@@ -10,6 +10,7 @@ import { boardReducers } from '../core/boards/board.reducers';
 import { TaskEffects } from '../core/tasks';
 import { taskReducers } from '../core/tasks';
 import { TasksFacade } from '../core/tasks';
+import { HeaderModule } from '../header/header.module';
 import { MainboardComponent } from './mainboard.component';
 import { MainboardRoutingModule } from './mainboard-routing.module';
 import { SharedModule } from '../shared';
@@ -20,6 +21,7 @@ import { SharedModule } from '../shared';
     CommonModule,
     SharedModule,
     CoreModule,
+    HeaderModule,
     MainboardRoutingModule,
     StoreModule.forRoot({ task: taskReducers, board: boardReducers }),
     EffectsModule.forRoot([TaskEffects]),

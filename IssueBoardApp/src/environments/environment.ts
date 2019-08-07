@@ -5,7 +5,13 @@
 export const environment = {
   production: false,
   GET_FROM_FAKE_SERVER: 'http://localhost:3000/response',
-  GET_USERS_FROM_FAKE_SERVER: 'http://localhost:3001/users'
+  GET_USERS_FROM_FAKE_SERVER: 'http://localhost:3001/users',
+
+  API_URL_ABOUT_PARTIAL: 'https://www.googleapis.com/drive/v3/about?fields=storageQuota',
+  API_URL_FILES_LIST: 'https://www.googleapis.com/drive/v3/files',
+  API_URL_FILES_UPLOAD_SIMPLE: 'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',
+  API_URL_FILES_UPLOAD_MULTIPLE: 'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',
+  API_URL_FOLDER_CREATE: 'https://www.googleapis.com/drive/v3/files',
 };
 
 /*

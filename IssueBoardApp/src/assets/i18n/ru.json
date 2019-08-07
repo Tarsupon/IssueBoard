@@ -2,7 +2,9 @@
   "app": {
     "langButtons": {
       "en": "АНГЛ",
-      "ru": "РУС"
+      "ru": "РУС",
+      "logout": "Выйти",
+      "upload": "Загрузить"
     },
     "loginForm": {
       "login": "Войти",
