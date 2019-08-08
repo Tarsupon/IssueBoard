@@ -1,5 +1,21 @@
 @import '../../assets/styles/variables';
 
+$containerBackgroundColor: #3C9DD0;
+$inputsBackgroundColor: #64AAD0;
+
+.googleUpload__fileInput::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.googleUpload__fileInput::before {
+  display: inline-block;
+  content: 'Pinned files:';
+  outline: none;
+  color: #235B79;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 700;
+}
 .container {
   height: $mainBoardHeight;
   width: $mainBoardWidth;
@@ -8,6 +24,7 @@
   justify-content: space-evenly;
   align-items: center;
   overflow-x: auto;
+  background-color: $containerBackgroundColor;
 
   .container__newTask {
     display: flex;
@@ -15,11 +32,16 @@
     width: 100%;
     align-items: center;
     text-align: center;
+    background-color: $inputsBackgroundColor;
+
 
     .newTask__input {
       width: $newTaskInputWidth;
       height: $newTaskInputButtonHeight;
       outline: none;
+    }
+
+    .newTask__newBoardInput {
     }
   }
 
@@ -35,10 +57,18 @@
       margin: 0 25px 25px 0;
       vertical-align: top;
       overflow-y: auto;
+      background-color: #E2E4E6;
+
+      .example-container__cardHeader {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
 
       .example-list {
         border: solid 2px #ccc;
-        min-height: 60px;
+        min-height: 50vh;
         background: white;
         border-radius: 4px;
         display: flex;
@@ -50,8 +80,8 @@
           border-bottom: solid 2px #ccc;
           color: rgba(0, 0, 0, 0.87);
           display: flex;
-          flex-direction: row;
-          align-items: center;
+          flex-direction: column;
+          align-items: flex-start;
           justify-content: space-between;
           box-sizing: border-box;
           cursor: move;
@@ -59,6 +89,24 @@
           font-size: 14px;
           overflow-y: auto;
 
+          .task__header {
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-between;
+          }
+
+          .task__googleUpload {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+          }
+          .task__pinnedFiles {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+          }
         }
       }
     }
@@ -87,8 +135,5 @@
     .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
       transition: transform 500ms cubic-bezier(0, 1, 0.2, 1);
     }
-
-
   }
 }
-

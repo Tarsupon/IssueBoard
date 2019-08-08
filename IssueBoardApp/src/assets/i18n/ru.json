@@ -8,6 +8,7 @@
     },
     "loginForm": {
       "login": "Войти",
+      "loginWithGoogle": "Войти с помощью Google",
       "username": "Имя пользователя",
       "password": "Пароль"
     },

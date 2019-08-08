@@ -3,6 +3,7 @@
     <mat-form-field>
       <input matInput
              #newBoard
+             class="newTask__newBoardInput"
              (keyup.enter)="createBoard(newBoard.value)"
              [placeholder]="'app.mainboard.addNewBoardPlaceholder' | translate">
     </mat-form-field>
@@ -19,27 +20,35 @@
   </div>
   <div cdkDropListGroup class="container__boards">
 
-    <div *ngFor="let board of tasks | keyvalue"  class="example-container">
-      <h2>{{board.key}}</h2>
-      <button mat-icon-button (click)="deleteBoard(board.key)"><mat-icon>clear</mat-icon></button>
+    <mat-card *ngFor="let board of tasks | keyvalue"  class="example-container">
+      <mat-card-header class="example-container__cardHeader">
+        <h2>{{board.key}}</h2>
+        <button mat-icon-button (click)="deleteBoard(board.key)"><mat-icon>clear</mat-icon></button>
+      </mat-card-header>
       <div
         cdkDropList
         [cdkDropListData]="tasks[board.key]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="task"
+        <mat-card class="task"
              *ngFor="let item of tasks[board.key]"
              cdkDrag>
-          <input matInput [readonly]="(board.key === 'Done')"
-                 class="task__input"
-                 #newTaskHeader
-                 [value]="item.header"
-                 (blur)="saveEditableTask(board.key, item, newTaskHeader.value)"
-                 (keyup.enter)="saveEditableTask(board.key, item, newTaskHeader.value)">
-          <button matSuffix mat-icon-button (click)="deleteTask(item.id, board.key)"><mat-icon>clear</mat-icon></button>
-        </div>
+          <mat-card-header class="task__header">
+            <input matInput [readonly]="(board.key === 'Done')"
+                   class="header__input"
+                   #newTaskHeader
+                   [value]="item.header"
+                   (blur)="saveEditableTask(board.key, item, newTaskHeader.value)"
+                   (keyup.enter)="saveEditableTask(board.key, item, newTaskHeader.value)">
+            <button matSuffix mat-icon-button (click)="deleteTask(item.id, board.key)"><mat-icon>clear</mat-icon></button>
+          </mat-card-header>
+          <div class="task__googleUpload">
+            <input class="googleUpload__fileInput" type="file" (change)="selectFile($event, board.key, item)">
+          </div>
+          <p class="task__pinnedFiles" *ngFor="let file of item.files">{{file}}</p>
+        </mat-card>
       </div>
-    </div>
+    </mat-card>
 
 <!--    <div class="example-container">-->
 <!--      <h2>In progress</h2>-->

@@ -1,7 +1,9 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { GoogleService } from '../core';
 import { AddBoard, DeleteBoard } from '../core/boards';
+import { AddFile } from '../core/files/file.action';
 import { AddTask, DeleteTask, EditTask, IAppState, TasksFacade } from '../core/tasks';
 import { ITask } from '../shared/interfaces';
 
@@ -13,11 +15,24 @@ import { ITask } from '../shared/interfaces';
 export class MainboardComponent implements OnInit{
 
   tasks:{[boardName: string]: ITask[]} = {};
+  private file: File;
   authUser = localStorage.getItem('username');
 
   constructor(public tasksFacade: TasksFacade,
-             private store: Store<IAppState>) {
+             private store: Store<IAppState>,
+              private gdriveResource: GoogleService) {
 
+  }
+  selectFile(event, boardType: string, item: ITask) {
+    console.log('selectFile..... ', event, '\nfile id..... ', event.target.files[0].id);
+    this.file = event.target.files[0];
+    this.store.dispatch(new AddFile({
+      boardType: boardType,
+      task: item,
+      file: event.target.files[0],
+      appState: { boards: this.tasks}
+    }));
+    this.gdriveResource.gapiDriveUploadFile(localStorage.getItem('access_token'), this.file);
   }
 
   drop(event: CdkDragDrop<ITask[]>) {

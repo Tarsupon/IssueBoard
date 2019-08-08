@@ -7,10 +7,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '../../environments/environment';
 import { CoreModule } from '../core';
 import { boardReducers } from '../core/boards/board.reducers';
+import { fileReducers } from '../core/files/file.reducers';
 import { TaskEffects } from '../core/tasks';
 import { taskReducers } from '../core/tasks';
 import { TasksFacade } from '../core/tasks';
-import { HeaderModule } from '../header/header.module';
+import { HeaderModule } from '../header';
 import { MainboardComponent } from './mainboard.component';
 import { MainboardRoutingModule } from './mainboard-routing.module';
 import { SharedModule } from '../shared';
@@ -23,7 +24,7 @@ import { SharedModule } from '../shared';
     CoreModule,
     HeaderModule,
     MainboardRoutingModule,
-    StoreModule.forRoot({ task: taskReducers, board: boardReducers }),
+    StoreModule.forRoot({ task: taskReducers, board: boardReducers, file: fileReducers }),
     EffectsModule.forRoot([TaskEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     TranslateModule,

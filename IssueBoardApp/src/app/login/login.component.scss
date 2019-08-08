@@ -1,33 +1,37 @@
+@import '../../assets/styles/login.variables';
 
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: $containerWidth;
+  height: $containerHeight;
 
   .container__card {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    width: 40vh;
-    height: 45vh;
+    align-items: center;
+    width: $cardWidth;
+    height: $cardHeight;
 
     .card__login {
-      margin-left: 1vh;
+      margin-right: $cardNameMarginRight;
 
     .card__form {
       display: flex;
       flex-direction: column;
-      height: 40vh;
 
       .form__username {
         margin: 2vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+        .username__input {
+          width: $cardInputsWidth;
+        }
       }
 
       .form__password {
@@ -35,8 +39,21 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+        .password__input {
+          width: $cardInputsWidth;
+        }
       }
     }
+
+      .card__loginButton {
+        width: $cardInputsWidth;
+        margin: 2vh;
+      }
+      .card__googleButton {
+        width: $cardInputsWidth;
+        margin: 2vh;
+      }
     }
   }
 

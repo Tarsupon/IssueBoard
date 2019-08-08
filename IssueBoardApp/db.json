@@ -4,19 +4,22 @@
       "Todo": [
         {
           "id": 99999,
-          "header": "TODO"
+          "header": "TODO",
+          "files": []
         }
       ],
       "InProgress": [
         {
           "id": 99999,
-          "header": "InPROGREEs"
+          "header": "InPROGREEs",
+          "files": []
         }
       ],
       "Done": [
         {
           "id": 99999,
-          "header": "DONe!!!"
+          "header": "DONe!!!",
+          "files": []
         }
       ]
     }
