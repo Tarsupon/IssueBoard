@@ -3,7 +3,7 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: $headerWidth;
   height: $headerHeight;
   background-color: #086CA2	;
@@ -11,31 +11,22 @@
   .container__googleUpload {
     display: flex;
     align-items: center;
+    text-align: center;
     justify-content: center;
     width: $uploadWidth;
     height: $uploadHeight;
 
+    input[type="file"] {
+      display: none;
+    }
+
     .googleUpload__fileInput {
+
       background-color: #64AAD0;
       cursor: pointer;
       height: $fileButton;
       width: $fileInput;
       border-radius: $fileInputBorderRadius;
-    }
-    .googleUpload__fileInput::-webkit-file-upload-button {
-      visibility: hidden;
-    }
-    .googleUpload__fileInput::before {
-      display: inline-block;
-      content: 'Choose';
-      outline: none;
-      white-space: nowrap;
-      -webkit-user-select: none;
-      cursor: pointer;
-      font-weight: 700;
-    }
-    .googleUpload__uploadButton {
-      height: $fileButton;
     }
   }
 
@@ -48,13 +39,16 @@
 
     .signOutLanbuttons__en {
       height: $fileButton;
+      margin: 2vh;
     }
 
     .signOutLanbuttons__ru {
       height: $fileButton;
+      margin: 2vh;
     }
     .signOutLanbuttons__logout {
       height: $fileButton;
+      margin: 2vh;
     }
   }
 }

@@ -43,7 +43,9 @@
             <button matSuffix mat-icon-button (click)="deleteTask(item.id, board.key)"><mat-icon>clear</mat-icon></button>
           </mat-card-header>
           <div class="task__googleUpload">
-            <input class="googleUpload__fileInput" type="file" (change)="selectFile($event, board.key, item)">
+            <label class="googleUpload__fileInput">
+              <input type="file" (change)="selectFile($event, board.key, item)">
+            </label>
           </div>
           <p class="task__pinnedFiles" *ngFor="let file of item.files">{{file}}</p>
         </mat-card>

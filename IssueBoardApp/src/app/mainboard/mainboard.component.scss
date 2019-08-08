@@ -3,9 +3,10 @@
 $containerBackgroundColor: #3C9DD0;
 $inputsBackgroundColor: #64AAD0;
 
-.googleUpload__fileInput::-webkit-file-upload-button {
-  visibility: hidden;
+input[type="file"] {
+  display: none;
 }
+
 .googleUpload__fileInput::before {
   display: inline-block;
   content: 'Pinned files:';
@@ -28,11 +29,11 @@ $inputsBackgroundColor: #64AAD0;
 
   .container__newTask {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
     width: 100%;
     align-items: center;
     text-align: center;
-    background-color: $inputsBackgroundColor;
+    //background-color: $inputsBackgroundColor;
 
 
     .newTask__input {
@@ -49,11 +50,13 @@ $inputsBackgroundColor: #64AAD0;
     width: $boardsContainerWidth;
     height: $boardContainerHeight;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    overflow-x: auto;
 
     .example-container {
-      width: 100vh;
-      max-width: 100%;
+      width: 23vw;
+      min-width: 15vw;
+      min-height: 40vh;
       margin: 0 25px 25px 0;
       vertical-align: top;
       overflow-y: auto;
