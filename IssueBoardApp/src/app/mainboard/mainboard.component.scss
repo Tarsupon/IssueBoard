@@ -7,6 +7,12 @@ input[type="file"] {
   display: none;
 }
 
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .googleUpload__fileInput::before {
   display: inline-block;
   content: 'Pinned files:';
@@ -16,6 +22,22 @@ input[type="file"] {
   -webkit-user-select: none;
   cursor: pointer;
   font-weight: 700;
+}
+.timeWraper {
+  display: flex;
+  .timeWraper__img {
+    color: #235B79;
+  }
+
+  .googleUpload__timeInput {
+    width: 12vh;
+    outline: none;
+    color: #235B79;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    font-weight: 700;
+  }
 }
 .container {
   height: $mainBoardHeight;
@@ -104,6 +126,13 @@ input[type="file"] {
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
+
+            .filesTimeWrapper {
+              display: flex;
+              width: 100%;
+              justify-content: space-between;
+              align-items: center;
+            }
           }
           .task__pinnedFiles {
             display: flex;

@@ -3,9 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { GoogleService } from '../core';
 import { AddBoard, DeleteBoard } from '../core/boards';
+import { ExcelService } from '../core/excel.service';
 import { AddFile } from '../core/files/file.action';
 import { AddTask, DeleteTask, EditTask, IAppState, TasksFacade } from '../core/tasks';
+import { AddTime } from '../core/times/time.action';
 import { ITask } from '../shared/interfaces';
+import { ICsvTask } from '../shared/interfaces/ICsvTask';
 
 @Component({
   selector: 'app-mainboard',
@@ -20,8 +23,8 @@ export class MainboardComponent implements OnInit{
 
   constructor(public tasksFacade: TasksFacade,
              private store: Store<IAppState>,
-              private gdriveResource: GoogleService) {
-
+              private gdriveResource: GoogleService,
+              private excel: ExcelService) {
   }
   selectFile(event, boardType: string, item: ITask) {
     console.log('selectFile..... ', event, '\nfile id..... ', event.target.files[0].id);
@@ -84,5 +87,26 @@ export class MainboardComponent implements OnInit{
   deleteBoard(key: string) {
    this.store.dispatch(new DeleteBoard({boardType: key, appState: {boards: this.tasks}}));
     this.tasksFacade.all$.subscribe((tasks: {[boardName: string]: ITask[]}) => this.tasks = tasks);
+  }
+
+  changeTime(item: ITask, boardType: string, time: string) {
+    this.store.dispatch(new AddTime({boardType: boardType, task: item, time: time, appState: {boards: this.tasks}}))
+  }
+
+  getData() {
+    let arr: ICsvTask[] = [];
+
+    Object.keys(this.tasks).forEach(key => {
+      this.tasks[key].forEach(task => {
+        let obj: ICsvTask = {boardType: key, id: task.id, time: task.time, files: task.files, header: task.header };
+        arr.push(obj);
+      })
+    });
+
+    return arr;
+  }
+
+  downloadExcel() {
+    this.excel.exportAsExcelFile(this.getData(), 'data');
   }
 }

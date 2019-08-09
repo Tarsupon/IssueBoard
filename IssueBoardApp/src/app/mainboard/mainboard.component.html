@@ -1,5 +1,6 @@
 <mat-card class="container">
   <div class="container__newTask">
+    <a mat-raised-button (click)="downloadExcel()">Download</a>
     <mat-form-field>
       <input matInput
              #newBoard
@@ -43,9 +44,20 @@
             <button matSuffix mat-icon-button (click)="deleteTask(item.id, board.key)"><mat-icon>clear</mat-icon></button>
           </mat-card-header>
           <div class="task__googleUpload">
-            <label class="googleUpload__fileInput">
-              <input type="file" (change)="selectFile($event, board.key, item)">
-            </label>
+            <div class="filesTimeWrapper">
+              <label class="googleUpload__fileInput">
+                <input type="file" (change)="selectFile($event, board.key, item)">
+              </label>
+              <div class="timeWraper">
+                <img class="timeWraper__img" src="../../assets/images/time.svg">
+                <input #newTaskTime
+                       [value]="item.time"
+                       (blur)="changeTime(item, board.key, newTaskTime.value)"
+                       class="googleUpload__timeInput"
+                       matInput
+                       type="time">
+              </div>
+            </div>
           </div>
           <p class="task__pinnedFiles" *ngFor="let file of item.files">{{file}}</p>
         </mat-card>

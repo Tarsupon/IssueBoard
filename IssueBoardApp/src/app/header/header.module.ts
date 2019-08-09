@@ -5,6 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CoreModule } from '../core';
 import { SharedModule } from '../shared';
 import { HeaderComponent } from './header.component';
+import { CsvModule } from '@ctrl/ngx-csv';
 
 @NgModule({
   declarations: [HeaderComponent],
@@ -17,6 +18,7 @@ import { HeaderComponent } from './header.component';
     SharedModule,
     TranslateModule,
     MatMenuModule,
+    CsvModule,
   ],
 })
 export class HeaderModule { }

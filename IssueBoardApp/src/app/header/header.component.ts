@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { GoogleApiService } from 'ng-gapi';
 import { GoogleService } from '../core/googleAuth.service';
@@ -21,7 +22,7 @@ export class HeaderComponent implements OnInit {
     private _httpClient: HttpClient,
     private gapiService: GoogleApiService,
     private gdriveResource: GoogleService,
-    private router: Router
+    private router: Router,
   ) {
     translate.addLangs(['en', 'ru']);
     this.translate.setDefaultLang('en');

@@ -5,6 +5,7 @@
         {
           "id": 99999,
           "header": "TODO",
+          "time": "12:00",
           "files": []
         }
       ],
@@ -12,6 +13,7 @@
         {
           "id": 99999,
           "header": "InPROGREEs",
+          "time": "13:00",
           "files": []
         }
       ],
@@ -19,6 +21,7 @@
         {
           "id": 99999,
           "header": "DONe!!!",
+          "time": "18:00",
           "files": []
         }
       ]

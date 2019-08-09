@@ -12,6 +12,7 @@ export const taskReducers = (
       let newItem: ITask = {
         id: state.boards['Todo'].length + 1,
         header: `${action.payload.header}`,
+        time: null,
         files: []
       };
       return {
