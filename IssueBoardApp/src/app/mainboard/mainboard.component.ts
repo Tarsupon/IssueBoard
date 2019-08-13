@@ -1,6 +1,8 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Angular5Csv } from 'angular5-csv/dist/Angular5-csv';
+
 import { GoogleService } from '../core';
 import { AddBoard, DeleteBoard } from '../core/boards';
 import { ExcelService } from '../core/excel.service';
@@ -9,6 +11,7 @@ import { AddTask, DeleteTask, EditTask, IAppState, TasksFacade } from '../core/t
 import { AddTime } from '../core/times/time.action';
 import { ITask } from '../shared/interfaces';
 import { ICsvTask } from '../shared/interfaces/ICsvTask';
+
 
 @Component({
   selector: 'app-mainboard',
@@ -95,18 +98,34 @@ export class MainboardComponent implements OnInit{
 
   getData() {
     let arr: ICsvTask[] = [];
-
     Object.keys(this.tasks).forEach(key => {
       this.tasks[key].forEach(task => {
         let obj: ICsvTask = {boardType: key, id: task.id, time: task.time, files: task.files, header: task.header };
         arr.push(obj);
       })
     });
-
+    console.log(arr);
     return arr;
   }
 
   downloadExcel() {
-    this.excel.exportAsExcelFile(this.getData(), 'data');
+    ExcelService.exportAsExcelFile(this.getData(), 'data');
+  }
+
+  downloadCsv() {
+    return new Angular5Csv(this.getData(), 'My Report',{
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: true,
+      showTitle: false,
+      useBom: true,
+      noDownload: false,
+      headers: ['Task Type', 'Task ID', 'Task Time', 'Attached files', 'Task'],
+      nullToEmptyString: true,
+    });
+  }
+  tocsv() {
+
   }
 }

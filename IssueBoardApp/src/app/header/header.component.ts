@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { GoogleApiService } from 'ng-gapi';
-import { GoogleService } from '../core/googleAuth.service';
+import { GoogleService } from '../core';
 
 @Component({
   selector: 'app-header',

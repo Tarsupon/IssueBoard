@@ -1,6 +1,9 @@
 <mat-card class="container">
   <div class="container__newTask">
-    <a mat-raised-button (click)="downloadExcel()">Download</a>
+    <a mat-raised-button (click)="downloadExcel()">export-xlsx</a>
+    <a mat-raised-button (click)="downloadCsv()">Angular5-csv</a>
+    <a mat-raised-button (click)="tocsv()">test</a>
+
     <mat-form-field>
       <input matInput
              #newBoard
@@ -63,34 +66,5 @@
         </mat-card>
       </div>
     </mat-card>
-
-<!--    <div class="example-container">-->
-<!--      <h2>In progress</h2>-->
-<!--      <div-->
-<!--        cdkDropList-->
-<!--        [cdkDropListData]="tasks['InProgress']"-->
-<!--        class="example-list"-->
-<!--        (cdkDropListDropped)="drop($event)">-->
-<!--        <div class="task" *ngFor="let item of tasks['InProgress']" cdkDrag>-->
-<!--          <input matInput class="task__input" #newTaskHeader [value]="item.header" (keyup.enter)="tasksFacade.saveEditableTask('InProgress', item, newTaskHeader.value)">-->
-<!--          <button matSuffix mat-icon-button (click)="tasksFacade.deleteTask(item.id, 'InProgress')"><mat-icon>clear</mat-icon></button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    <div class="example-container">-->
-<!--      <h2>Done</h2>-->
-<!--      <div-->
-<!--        cdkDropList-->
-<!--        [cdkDropListData]="tasks['Done']"-->
-<!--        class="example-list"-->
-<!--        (cdkDropListDropped)="drop($event)">-->
-<!--        <div class="task" *ngFor="let item of tasks['Done']" cdkDrag>-->
-<!--          <input matInput class="task__input" [value]="item.header" readonly>-->
-<!--          <button matSuffix mat-icon-button (click)="tasksFacade.deleteTask(item.id, 'Done')"><mat-icon>clear</mat-icon></button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-
-  </div>
+</div>
 </mat-card>
